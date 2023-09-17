@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker Commands</title>
+    <link rel="stylesheet" href="/static/styles.css">
+
+</head>
+<body>
+    <header>
+        <h1>SSH Hacker Strategies</h1>
+    </header>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/tools">Tools</a>
+    </nav>
+    <div class="container">
+        <!-- Home Page Content -->
+        <h2>Home Page</h2>
+        <p>Welcome to our website! This website will allow you to figure out what kind of attack patterns adversaries are deploying onto your system!
+        just enter the commmands and see what type it is!
+        </p>
+        
+         <!-- Text Box and Output Box -->
+        <form action="/process_text" method="post" id="text-form">
+            <label for="input-text">Enter Text:</label>
+            <textarea id="input-text" name="input-text" rows="1" cols="100"></textarea>
+            <script>
+                document.getElementById("input-text").addEventListener("keydown", function(e) {
+                    if (e.keyCode === 13) { // 如果按下的键是Enter键（键码13）
+                        e.preventDefault(); // 阻止默认的Enter键行为（换行）
+                        document.getElementById("text-form").submit(); // 提交表单
+                    }
+                });
+            </script>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="output-box">
+            <!-- Output from AI processing will appear here -->
+            {% if result %}
+                <h4>{{ input_text }}:</h4>
+                <p>▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁</p>
+                <h2>Tactics  </h2>
+                <!--<h4>{{ tactic_name }}</h4> -->
+                
+                {% for num in num_list %}
+                        
+                        <h4>{%print(num+1)%}.  <a href="{{ tactic_url[num] }}"> {{tactic_name[num]}} </a></h4>
+                        <p>{{ tactic_description[num].strip('[\\n    \\n]') }}</p>
+                {% endfor %}
+                <!--<p>{{ tactic_description[0].strip('[\\n    \\n]') }}</p>-->
+                <p>▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁</p>
+                <h2>Technique</h2>
+                {% for num in num_list %}
+                        
+                        <h4>{%print(num+1)%}.  <a href="{{ tech_url[num] }}">{{ technique_name[num] }}</a></h4>
+                        <p>{{ technique_description[num].strip('[\\n    \\n]') }}</p>
+                {% endfor %}    
+                      
+                    
+                
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
+
+
